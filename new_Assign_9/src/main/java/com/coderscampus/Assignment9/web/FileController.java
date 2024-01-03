@@ -14,7 +14,7 @@ import com.coderscampus.Assignment9.service.FileService;
 @RestController
 public class FileController {
 
-	//Create “endpoints” inside of a RestController that will filter data
+	//Create endpoints inside of a RestController that will filter data
 	
 		@Autowired
 		private ApplicationContext appContext;
@@ -30,7 +30,7 @@ public class FileController {
 		
 		// these below will be calling methods that filters for each category from the file service
 		
-		//The “gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true
+		//The gluten-free endpoint will only return a subset of the full Collection of glutenFree recipes
 		@GetMapping("/gluten-free") 
 		public List<Recipe> glutenFree() throws IOException {
 			FileService fileService = appContext.getBean(FileService.class);
@@ -38,7 +38,7 @@ public class FileController {
 			return fileService.glutenFree();
 		}
 		
-		//The “vegan” endpoint will only return a subset of the full Collection where vegan is true
+		//The vegan endpoint will only return a subset of the full Collection of vegan recipes
 		@GetMapping("/vegan") 
 		public List<Recipe> vegan() throws IOException {
 			FileService fileService = appContext.getBean(FileService.class);
@@ -46,15 +46,15 @@ public class FileController {
 			return fileService.vegan();
 		}
 		
-		//The “vegan-and-gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true and vegan is true
-		@GetMapping("/vegan-and-gluten-free") 
+		//The vegan-and-gluten-free endpoint will only return a subset of the full Collection of glutenFree and vegan recipes
+		@GetMapping("veganandglutenfree")
 		public List<Recipe> veganAndGlutenFree() throws IOException {
 			FileService fileService = appContext.getBean(FileService.class);
 			fileService.veganAndGlutenFree().forEach(System.out::println);
 			return fileService.veganAndGlutenFree();
 		}
 		
-		//The “vegetarian” endpoint will only return a subset of the full Collection where vegetarian is true
+		//The vegetarian endpoint will only return a subset of the full Collection of vegetarian recipes
 		@GetMapping("/vegetarian") 
 		public List<Recipe> vegetarian() throws IOException {
 			FileService fileService = appContext.getBean(FileService.class);
@@ -62,7 +62,7 @@ public class FileController {
 			return fileService.vegetarian();
 		}
 		
-		//The “all-recipes” endpoint will not filter the data at all and should return the full Collection
+		//The all-recipes endpoint will not filter the data at all. 
 		@GetMapping("/all-recipes") 
 		public List<Recipe> allRecipes() throws IOException  {
 			FileService fileService = appContext.getBean(FileService.class);
